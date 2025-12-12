@@ -1,0 +1,116 @@
+/* Layout: left panel = 50%, graph = 50% */
+*{box-sizing:border-box}
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police moderne */
+    margin: 0; 
+    display:flex; 
+    height:100vh; 
+    background: #eef1f6; /* Arrière-plan général clair */
+}
+
+/* Left input panel */
+#left { 
+    width: 50%; 
+    padding: 24px; 
+    border-right: 1px solid #dcdfe5; 
+    box-sizing: border-box; 
+    overflow:auto; 
+    background:#ffffff; 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05); /* Ombre subtile */
+}
+
+/* Right graph area */
+#graph { 
+    flex:1; 
+    min-width: 30%; 
+    background: #ffffff; /* Arrière-plan de la zone de graphe */
+    display:flex; 
+    align-items:stretch; 
+}
+#network { width:100%; height:100%; }
+
+/* Text + controls */
+h1 { 
+    font-size:24px; 
+    margin:0 0 10px 0; 
+    color:#24324a; 
+    padding-bottom:10px; 
+    border-bottom: 2px solid #f0f2f7; /* Ligne de séparation */
+    font-weight: 600;
+}
+.panel { max-width: 960px; }
+label { display:block; margin-top:16px; font-size:14px; color:#556677; font-weight: 600; }
+input, select, button { 
+    width:100%; 
+    padding:10px; 
+    margin-top:6px; 
+    border-radius:4px; 
+    border:1px solid #dce1e8; 
+    font-size:14px; 
+}
+.row { display:flex; gap:10px; margin-top:6px; } 
+.row.gap-8 { gap:8px; }
+.row > * { flex:1; }
+
+/* Grouping for visual hierarchy */
+.control-group { 
+    border: 1px solid #eef1f6; 
+    padding: 15px; 
+    border-radius: 6px; 
+    margin-bottom: 20px; 
+    background: #fbfdff; /* Arrière-plan légèrement différent pour le groupe */
+}
+.control-group > label:first-child { margin-top: 0; }
+
+
+/* Buttons */
+.btn { 
+    cursor:pointer; 
+    color:white; 
+    border:none; 
+    padding:10px; 
+    border-radius:4px; 
+    transition: background 0.2s; 
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+/* Dijkstra (Primary Blue) */
+.btn:not(.secondary):not(.danger) { background:#1f78c8; }
+.btn:not(.secondary):not(.danger):hover { background:#1860a1; }
+
+/* A* (Custom Green/Teal - Utilise l'ID pour cibler le bouton A*) */
+#runAstar { background: #009688; } 
+#runAstar:hover { background: #00796b; }
+
+/* Secondary (Grey) */
+.btn.secondary { background:#6c757d; box-shadow: none; }
+.btn.secondary:hover { background:#5a6268; }
+
+/* Bellman-Ford (Danger Red) */
+.btn.danger { background:#dc3545; }
+.btn.danger:hover { background:#c82333; }
+
+.checkbox { margin-top:10px; font-size:14px; color:#2b3b4a; }
+
+/* Log and notes */
+.muted { color:#6b7b8f; font-size:13px; margin-top:6px; line-height:1.4; }
+#log { 
+    height:150px; 
+    overflow:auto; 
+    background:#ffffff; 
+    border:1px solid #dce1e8; 
+    padding:12px; 
+    margin-top:16px; 
+    font-size:13px; 
+    color:#21303f; 
+    border-radius:6px; 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); 
+}
+.algo-note { font-size:13px; color:#465568; margin-top:8px; }
+
+/* Responsive: stack panels on narrow screens */
+@media (max-width: 900px){
+  body { flex-direction: column; }
+  #left { width:100%; height: 50vh; border-right: none; border-bottom: 1px solid #dcdfe5; box-shadow: none; }
+  #graph { min-height: 50vh; }
+}

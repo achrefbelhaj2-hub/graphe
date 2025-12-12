@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Graphe interactif — Dijkstra optimisé & A*</title>
+
+  <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+  <link href="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="left">
+    <h1>Graphe interactif — Dijkstra & Bellman-Ford & A*</h1>
+
+    <div class="panel">
+      
+      <div class="control-group">
+        <label>Ajouter un nœud (nom)</label>
+        <div class="row">
+          <input id="nodeName" placeholder="Ex: A, B, 1, Paris" />
+          <button id="addNodeBtn" class="btn">Ajouter</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Ajouter une arête (source → cible + poids)</label>
+        <input id="edgeFrom" placeholder="Source (ex: A)" />
+        <input id="edgeTo" placeholder="Cible (ex: B)" />
+        <input id="edgeWeight" placeholder="Poids (ex: 5)" />
+        <button id="addEdgeBtn" class="btn">Ajouter arête</button>
+      </div>
+
+      <div class="control-group">
+        <label>Début (source)</label>
+        <select id="startSelect"></select>
+        <label>Fin (destination)</label>
+        <select id="endSelect"></select>
+
+        <div class="row gap-8">
+          <button id="runDijkstra" class="btn">Exécuter Dijkstra</button>
+          <button id="runAstar" class="btn">Exécuter A*</button> 
+        </div>
+        
+        <div class="row gap-8" style="margin-top: 10px;">
+          <button id="runBellmanFord" class="btn danger">Exécuter Bellman-Ford</button>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" id="nonOriented" /> Graphe non orienté (cocher)
+        </label>
+
+        <div class="algo-note"></div> 
+      </div>
+
+      <div class="row gap-8">
+          <button id="loadSample" class="btn secondary">Charger graphe d'exemple</button>
+          <button id="clearHighlight" class="btn secondary">Réinitialiser mise en évidence</button>
+          <button id="resetAll" class="btn secondary">Tout réinitialiser</button>
+      </div>
+      
+      <div class="info" style="margin-top:20px;">
+        <strong>Instructions :</strong>
+        <div class="muted">
+          - Déplace les nœuds avec la souris.<br>
+          - Double-clic sur l'aire pour créer un nœud à la position cliquée (utile pour A*).<br>
+          - Cocher "Graphe non orienté" fait que les arêtes sont traitées comme non dirigées (adjacence réciproque).<br>
+          - Les poids doivent être positifs pour Dijkstra/A*.
+        </div>
+      </div>
+
+      <div id="log" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div id="graph">
+    <div id="network"></div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
